@@ -8,6 +8,7 @@ var floor_treshold = 2
 var can_jump = 0
 onready var start_pos = position
 var dead = false
+signal die
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	$animatedsprite.play("diving")
@@ -53,4 +54,23 @@ func _process(delta):
 			been_on_floor -= 1
 		move_and_slide(velocity, Vector2(0,-1))
 		velocity.x = lerp(velocity.x, 0, 0.05)
-		pass
+	else:
+		velocity.y = 2*(start_pos.y - position.y) 
+		velocity.x = 2*(start_pos.x - position.x) 
+		move_and_slide(velocity,Vector2(0,-1))
+		velocity.x = lerp(velocity.x, 0, 0.05)
+		velocity.y = lerp(velocity.y, 0, 0.05)
+
+
+
+func _on_Area2D_body_entered(body):
+	print(start_pos, position)
+	if body.name == "shark":
+		print("dying")
+		dead = true
+		emit_signal("die")
+
+
+func _on_Panel_play_again():
+	dead = false
+	pass # Replace with function body.

@@ -4,8 +4,8 @@ extends Panel
 # Declare member variables here. Examples:
 # var a = 2
 # var b = "text"
-
-
+var has_died = false
+signal play_again
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	show()
@@ -19,6 +19,16 @@ func _ready():
 
 
 func _on_Button_pressed():
-	$AnimationPlayer.play("fadeout")
-	get_tree().paused = false
+	if not has_died:
+		$AnimationPlayer.play("fadeout")
+		get_tree().paused = false
+	else:
+		$AnimationPlayer.play("fadeout")
+		emit_signal("play_again")
+
+
+func _on_character_die():
+	$AnimationPlayer.play("fadein")
+	$Button.text = "Play Again"
+	has_died = true
 	pass # Replace with function body.

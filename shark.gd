@@ -4,6 +4,7 @@ var move_speed = 0.5
 var gravity = 50
 var player
 onready var start_pos = position
+var dead = false
 # Declare member variables here. Examples:
 # var a = 2
 # var b = "text"
@@ -17,15 +18,32 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	velocity.y += gravity
-	var look_position = player.position
-	if look_position.x - position.x < -3:
-		look_position.x = position.x + abs(position.x - look_position.x)
-		look_position.y = position.y + abs(position.y - look_position.y)
-		$AnimatedSprite.flip_h = true
+	if not dead:
+		velocity.y += gravity
+		var look_position = player.position
+		if look_position.x - position.x < -3:
+			look_position.x = position.x + abs(position.x - look_position.x)
+			look_position.y = position.y + abs(position.y - look_position.y)
+			$AnimatedSprite.flip_h = true
+		else:
+			$AnimatedSprite.flip_h = false
+		look_at(look_position)
+		velocity.x = move_speed*(player.position.x - position.x) 
+		move_and_slide(velocity, Vector2(0,-1))
+		velocity.x = lerp(velocity.x, 0, 0.05)
 	else:
-		$AnimatedSprite.flip_h = false
-	look_at(look_position)
-	velocity.x = move_speed*(player.position.x - position.x) 
-	move_and_slide(velocity, Vector2(0,-1))
-	velocity.x = lerp(velocity.x, 0, 0.05)
+		velocity.y = 2*(start_pos.y - position.y) 
+		velocity.x = 2*(start_pos.x - position.x) 
+		move_and_slide(velocity,Vector2(0,-1))
+		velocity.x = lerp(velocity.x, 0, 0.05)
+		velocity.y = lerp(velocity.y, 0, 0.05)
+
+
+func _on_character_die():
+	dead = true
+	pass # Replace with function body.
+
+
+func _on_Panel_play_again():
+	dead = false
+	pass # Replace with function body.

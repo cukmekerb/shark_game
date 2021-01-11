@@ -1,0 +1,38 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://assets/blue_small.png" type="Texture" id=1]
+[ext_resource path="res://splash.gd" type="Script" id=2]
+
+[sub_resource type="ParticlesMaterial" id=1]
+lifetime_randomness = 0.13
+emission_shape = 2
+emission_box_extents = Vector3( 10, 5, 1 )
+flag_disable_z = true
+direction = Vector3( 0, -1, 0 )
+spread = 39.0
+gravity = Vector3( 0, 340, 0 )
+initial_velocity = 151.67
+initial_velocity_random = 0.43
+angular_velocity = 312.0
+angular_velocity_random = 0.46
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+linear_accel = 10.0
+linear_accel_random = 0.41
+radial_accel = 13.33
+radial_accel_random = 0.29
+angle = 132.0
+angle_random = 0.86
+scale = 0.3
+scale_random = 0.58
+
+[node name="splash" type="Particles2D"]
+scale = Vector2( 6.51915, 6.51915 )
+emitting = false
+amount = 100
+one_shot = true
+explosiveness = 0.73
+randomness = 1.0
+process_material = SubResource( 1 )
+texture = ExtResource( 1 )
+script = ExtResource( 2 )

@@ -23,20 +23,20 @@ tracks/0/keys = {
 
 [sub_resource type="SpriteFrames" id=2]
 animations = [ {
-"frames": [ ExtResource( 2 ) ],
-"loop": true,
-"name": "diving",
-"speed": 5.0
-}, {
 "frames": [ ExtResource( 1 ) ],
 "loop": true,
 "name": "swimming",
 "speed": 5.0
+}, {
+"frames": [ ExtResource( 2 ) ],
+"loop": true,
+"name": "diving",
+"speed": 5.0
 } ]
 
 [sub_resource type="CapsuleShape2D" id=3]
-radius = 76.2655
-height = 224.118
+radius = 43.3556
+height = 241.019
 
 [node name="character" type="KinematicBody2D"]
 script = ExtResource( 4 )
@@ -53,7 +53,7 @@ frames = SubResource( 2 )
 animation = "swimming"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2( -2.11893, 31.7839 )
+position = Vector2( -6.35678, 31.7839 )
 shape = SubResource( 3 )
 
 [node name="Camera2D" type="Camera2D" parent="."]
@@ -63,7 +63,7 @@ limit_smoothed = true
 drag_margin_h_enabled = true
 drag_margin_v_enabled = true
 smoothing_enabled = true
-drag_margin_left = 0.88
+drag_margin_left = 0.65
 drag_margin_top = 0.78
-drag_margin_right = 0.87
+drag_margin_right = 0.65
 drag_margin_bottom = 0.54

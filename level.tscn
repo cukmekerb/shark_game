@@ -1,20 +1,114 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://character.tscn" type="PackedScene" id=1]
 [ext_resource path="res://assets/blue.png" type="Texture" id=2]
 [ext_resource path="res://shark.tscn" type="PackedScene" id=3]
 [ext_resource path="res://assets/pilar.png" type="Texture" id=4]
-
-[sub_resource type="RectangleShape2D" id=2]
-extents = Vector2( 75.2204, 246.512 )
+[ext_resource path="res://assets/sky.png" type="Texture" id=5]
+[ext_resource path="res://assets/clouds.png" type="Texture" id=6]
+[ext_resource path="res://water.gd" type="Script" id=7]
+[ext_resource path="res://font.tres" type="DynamicFont" id=8]
+[ext_resource path="res://panel.gd" type="Script" id=9]
 
 [sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 75.2204, 246.512 )
+
+[sub_resource type="RectangleShape2D" id=2]
 extents = Vector2( 3482.58, 628.81 )
+
+[sub_resource type="Animation" id=4]
+resource_name = "fadein"
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 0.780392 ) ]
+}
+
+[sub_resource type="Animation" id=5]
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0.780392 ), Color( 1, 1, 1, 0 ) ]
+}
 
 [node name="Node2D" type="Node2D"]
 
+[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+
+[node name="sky" type="ParallaxLayer" parent="ParallaxBackground"]
+
+[node name="sky" type="Sprite" parent="ParallaxBackground/sky"]
+modulate = Color( 0.294118, 0.290196, 0.423529, 1 )
+position = Vector2( 536.82, -527.669 )
+scale = Vector2( 59.9895, 59.9895 )
+texture = ExtResource( 5 )
+
+[node name="clouds" type="ParallaxLayer" parent="ParallaxBackground"]
+modulate = Color( 0.21, 0.21, 0.21, 0.466667 )
+motion_scale = Vector2( 0.4, 0.4 )
+
+[node name="TextureRect" type="TextureRect" parent="ParallaxBackground/clouds"]
+margin_left = -3171.0
+margin_top = -2084.0
+margin_right = 7884.0
+margin_bottom = 5351.0
+rect_scale = Vector2( 1.4, 1.4 )
+texture = ExtResource( 6 )
+stretch_mode = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="clouds3" type="ParallaxLayer" parent="ParallaxBackground"]
+modulate = Color( 0.55, 0.55, 0.55, 0.54902 )
+motion_scale = Vector2( 0.7, 0.7 )
+
+[node name="TextureRect" type="TextureRect" parent="ParallaxBackground/clouds3"]
+margin_left = -7882.82
+margin_top = -4379.5
+margin_right = 3172.18
+margin_bottom = 3055.5
+rect_rotation = -18.0
+rect_scale = Vector2( 1.785, 1.785 )
+texture = ExtResource( 6 )
+stretch_mode = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="clouds2" type="ParallaxLayer" parent="ParallaxBackground"]
+modulate = Color( 0.68, 0.68, 0.68, 0.74902 )
+motion_scale = Vector2( 0.9, 0.9 )
+
+[node name="TextureRect" type="TextureRect" parent="ParallaxBackground/clouds2"]
+margin_left = -3412.63
+margin_top = -7158.27
+margin_right = 7642.37
+margin_bottom = 276.732
+rect_rotation = 18.0
+rect_scale = Vector2( 2, 2 )
+texture = ExtResource( 6 )
+stretch_mode = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [node name="wall" type="StaticBody2D" parent="."]
-position = Vector2( -1620.08, 663.081 )
+position = Vector2( -1620.08, 794.611 )
 scale = Vector2( 4.57232, 4.54645 )
 
 [node name="Sprite" type="Sprite" parent="wall"]
@@ -22,10 +116,10 @@ texture = ExtResource( 4 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="wall"]
 position = Vector2( -24.744, 0 )
-shape = SubResource( 2 )
+shape = SubResource( 1 )
 
 [node name="wall2" type="StaticBody2D" parent="."]
-position = Vector2( 5950.92, 710.836 )
+position = Vector2( 5950.92, 842.366 )
 scale = Vector2( -4.572, 4.546 )
 
 [node name="Sprite" type="Sprite" parent="wall2"]
@@ -33,7 +127,7 @@ texture = ExtResource( 4 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="wall2"]
 position = Vector2( -24.744, 0 )
-shape = SubResource( 2 )
+shape = SubResource( 1 )
 
 [node name="character" parent="." instance=ExtResource( 1 )]
 position = Vector2( 2311.26, 12.6992 )
@@ -41,18 +135,66 @@ position = Vector2( 2311.26, 12.6992 )
 [node name="shark" parent="." instance=ExtResource( 3 )]
 position = Vector2( 504.882, 802.258 )
 
-[node name="StaticBody2D2" type="StaticBody2D" parent="."]
+[node name="water" type="StaticBody2D" parent="."]
 position = Vector2( 2175.65, 2178.43 )
 scale = Vector2( 1.1192, 1.11286 )
+script = ExtResource( 7 )
 __meta__ = {
 "_edit_group_": true
 }
 
-[node name="blue" type="Sprite" parent="StaticBody2D2"]
+[node name="blue" type="Sprite" parent="water"]
 modulate = Color( 1, 1, 1, 0.635294 )
 position = Vector2( -24.6077, 289.647 )
 scale = Vector2( 14.7733, -3.91854 )
 texture = ExtResource( 2 )
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D2"]
-shape = SubResource( 1 )
+[node name="water_splash_hitbox" type="Area2D" parent="water"]
+position = Vector2( 132.829, -31.8077 )
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="water/water_splash_hitbox"]
+shape = SubResource( 2 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="water"]
+shape = SubResource( 2 )
+
+[node name="Panel" type="Panel" parent="."]
+pause_mode = 2
+modulate = Color( 1, 1, 1, 0.780392 )
+margin_left = -2645.0
+margin_top = -1234.0
+margin_right = 6735.0
+margin_bottom = 3721.0
+script = ExtResource( 9 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="Panel"]
+margin_left = 937.0
+margin_top = 554.0
+margin_right = 9171.0
+margin_bottom = 868.0
+custom_fonts/font = ExtResource( 8 )
+text = "Shark Chase"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Button" type="Button" parent="Panel"]
+margin_left = 3841.69
+margin_top = 1026.21
+margin_right = 6141.69
+margin_bottom = 1535.21
+custom_fonts/font = ExtResource( 8 )
+text = "START GAME"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Panel"]
+anims/fadein = SubResource( 4 )
+anims/fadeout = SubResource( 5 )
+[connection signal="body_entered" from="water/water_splash_hitbox" to="water" method="_on_water_splash_hitbox_body_entered"]
+[connection signal="pressed" from="Panel/Button" to="Panel" method="_on_Button_pressed"]

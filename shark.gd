@@ -3,6 +3,7 @@ var velocity = Vector2()
 var move_speed = 0.5
 var gravity = 50
 var player
+onready var start_pos = position
 # Declare member variables here. Examples:
 # var a = 2
 # var b = "text"

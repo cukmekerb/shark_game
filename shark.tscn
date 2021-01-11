@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://assets/shark-2.png" type="Texture" id=1]
 [ext_resource path="res://assets/shark-1.png" type="Texture" id=2]
+[ext_resource path="res://shark.gd" type="Script" id=3]
 
 [sub_resource type="SpriteFrames" id=1]
 animations = [ {
@@ -12,17 +13,17 @@ animations = [ {
 } ]
 
 [sub_resource type="CapsuleShape2D" id=2]
-radius = 102.321
-height = 391.714
+radius = 52.6732
+height = 285.198
 
 [node name="KinematicBody2D" type="KinematicBody2D"]
+script = ExtResource( 3 )
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 frames = SubResource( 1 )
-frame = 1
 playing = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2( -26.9391, 31.4289 )
+position = Vector2( -32.9391, 39.4289 )
 rotation = 1.55834
 shape = SubResource( 2 )

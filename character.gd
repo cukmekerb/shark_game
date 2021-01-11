@@ -17,8 +17,10 @@ func _ready():
 func _process(delta):
 	velocity.y += gravity
 	if Input.is_action_pressed("move_r"):
+		$arms.get_node("AnimationPlayer").playback_speed = 1
 		velocity.x = move_speed
 	if Input.is_action_pressed("move_l"):
+		$arms.get_node("AnimationPlayer").playback_speed = -1
 		velocity.x = -move_speed
 	if Input.is_action_just_pressed("move_u") and is_on_floor():
 		velocity.y = jump_speed

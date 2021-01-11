@@ -42,7 +42,7 @@ height = 224.118
 script = ExtResource( 4 )
 
 [node name="arms" type="Sprite" parent="."]
-rotation = 3.30256
+rotation = 2.40486
 texture = ExtResource( 3 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="arms"]

@@ -1,20 +1,49 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://character.tscn" type="PackedScene" id=1]
 [ext_resource path="res://assets/blue.png" type="Texture" id=2]
 [ext_resource path="res://shark.tscn" type="PackedScene" id=3]
+[ext_resource path="res://assets/pilar.png" type="Texture" id=4]
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 75.2204, 246.512 )
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 3482.58, 628.81 )
 
 [node name="Node2D" type="Node2D"]
 
+[node name="wall" type="StaticBody2D" parent="."]
+position = Vector2( -1620.08, 663.081 )
+scale = Vector2( 4.57232, 4.54645 )
+
+[node name="Sprite" type="Sprite" parent="wall"]
+texture = ExtResource( 4 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="wall"]
+position = Vector2( -24.744, 0 )
+shape = SubResource( 2 )
+
+[node name="wall2" type="StaticBody2D" parent="."]
+position = Vector2( 5950.92, 710.836 )
+scale = Vector2( -4.572, 4.546 )
+
+[node name="Sprite" type="Sprite" parent="wall2"]
+texture = ExtResource( 4 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="wall2"]
+position = Vector2( -24.744, 0 )
+shape = SubResource( 2 )
+
 [node name="character" parent="." instance=ExtResource( 1 )]
 position = Vector2( 2311.26, 12.6992 )
 
+[node name="shark" parent="." instance=ExtResource( 3 )]
+position = Vector2( 504.882, 802.258 )
+
 [node name="StaticBody2D2" type="StaticBody2D" parent="."]
-position = Vector2( 3307.59, 2242.5 )
-scale = Vector2( 2.05389, 1.11286 )
+position = Vector2( 2175.65, 2178.43 )
+scale = Vector2( 1.1192, 1.11286 )
 __meta__ = {
 "_edit_group_": true
 }
@@ -27,6 +56,3 @@ texture = ExtResource( 2 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D2"]
 shape = SubResource( 1 )
-
-[node name="shark" parent="." instance=ExtResource( 3 )]
-position = Vector2( 504.882, 802.258 )

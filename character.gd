@@ -5,6 +5,7 @@ var jump_speed = -1800
 var gravity = 50
 var been_on_floor = 0
 var floor_treshold = 2
+var can_jump = 0
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	$animatedsprite.play("diving")
@@ -22,10 +23,17 @@ func _process(delta):
 	if Input.is_action_pressed("move_l"):
 		$arms.get_node("AnimationPlayer").playback_speed = -1
 		velocity.x = -move_speed
-	if Input.is_action_just_pressed("move_u") and is_on_floor():
-		velocity.y = jump_speed
+	if Input.is_action_just_pressed("move_u") and (is_on_floor() or can_jump < 1.5):
+		can_jump += 1
+		if can_jump < 1.5:
+			velocity.y = jump_speed
+		else:
+			velocity.y = jump_speed/1.2
+		print(can_jump)
 	if is_on_floor() and been_on_floor > floor_treshold:
 		rotation_degrees = 90
+		if can_jump > 0:
+			can_jump -= 0.5
 		$animatedsprite.play("swimming")
 		$arms.show()
 	elif is_on_floor():

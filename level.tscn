@@ -14,20 +14,19 @@
 [ext_resource path="res://globalvars.gd" type="Script" id=12]
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 75.2204, 246.512 )
+extents = Vector2( 75.2204, 1097.31 )
 
 [sub_resource type="RectangleShape2D" id=2]
 extents = Vector2( 3482.58, 628.81 )
 
-[sub_resource type="StyleBoxFlat" id=7]
+[sub_resource type="StyleBoxFlat" id=3]
 bg_color = Color( 0.141176, 0.141176, 0.141176, 1 )
 border_width_left = 200
 border_width_right = 200
 border_color = Color( 0.141176, 0.141176, 0.141176, 0 )
 border_blend = true
 
-[sub_resource type="Animation" id=3]
-resource_name = "fadein"
+[sub_resource type="Animation" id=4]
 tracks/0/type = "value"
 tracks/0/path = NodePath(".:modulate")
 tracks/0/interp = 1
@@ -41,7 +40,7 @@ tracks/0/keys = {
 "values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 0.780392 ) ]
 }
 
-[sub_resource type="Animation" id=4]
+[sub_resource type="Animation" id=5]
 tracks/0/type = "value"
 tracks/0/path = NodePath(".:modulate")
 tracks/0/interp = 1
@@ -55,14 +54,14 @@ tracks/0/keys = {
 "values": [ Color( 1, 1, 1, 0.780392 ), Color( 1, 1, 1, 0 ) ]
 }
 
-[sub_resource type="StyleBoxFlat" id=5]
+[sub_resource type="StyleBoxFlat" id=6]
 bg_color = Color( 0.14902, 0.14902, 0.14902, 0.658824 )
 corner_radius_top_left = 20
 corner_radius_top_right = 20
 corner_radius_bottom_right = 20
 corner_radius_bottom_left = 20
 
-[sub_resource type="DynamicFont" id=6]
+[sub_resource type="DynamicFont" id=7]
 size = 32
 font_data = ExtResource( 10 )
 
@@ -136,7 +135,7 @@ scale = Vector2( 4.57232, 4.54645 )
 texture = ExtResource( 4 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="wall"]
-position = Vector2( -24.744, 0 )
+position = Vector2( -2.32731, -705.081 )
 shape = SubResource( 1 )
 
 [node name="wall2" type="StaticBody2D" parent="."]
@@ -147,7 +146,7 @@ scale = Vector2( -4.572, 4.546 )
 texture = ExtResource( 4 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="wall2"]
-position = Vector2( -24.744, 0 )
+position = Vector2( 3.52785, -843.194 )
 shape = SubResource( 1 )
 
 [node name="character" parent="." instance=ExtResource( 1 )]
@@ -181,12 +180,13 @@ shape = SubResource( 2 )
 
 [node name="Panel" type="Panel" parent="."]
 pause_mode = 2
+visible = false
 modulate = Color( 1, 1, 1, 0.780392 )
 margin_left = -2645.0
 margin_top = -1234.0
 margin_right = 6735.0
 margin_bottom = 3721.0
-custom_styles/panel = SubResource( 7 )
+custom_styles/panel = SubResource( 3 )
 script = ExtResource( 9 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -227,8 +227,8 @@ __meta__ = {
 }
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Panel"]
-anims/fadein = SubResource( 3 )
-anims/fadeout = SubResource( 4 )
+anims/fadein = SubResource( 4 )
+anims/fadeout = SubResource( 5 )
 
 [node name="scorebox" type="CanvasLayer" parent="."]
 
@@ -237,7 +237,7 @@ margin_left = 10.0
 margin_top = 10.0
 margin_right = 151.0
 margin_bottom = 60.0
-custom_styles/panel = SubResource( 5 )
+custom_styles/panel = SubResource( 6 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -247,7 +247,7 @@ margin_left = 7.12246
 margin_top = 1.12246
 margin_right = 136.122
 margin_bottom = 48.1225
-custom_fonts/font = SubResource( 6 )
+custom_fonts/font = SubResource( 7 )
 text = "0000"
 align = 1
 valign = 1
@@ -258,9 +258,9 @@ __meta__ = {
 
 [node name="GlobalVars" type="Node2D" parent="."]
 script = ExtResource( 12 )
-[connection signal="die" from="character" to="Panel" method="_on_character_die"]
-[connection signal="die" from="character" to="GlobalVars" method="_on_character_die"]
 [connection signal="die" from="character" to="shark" method="_on_character_die"]
+[connection signal="die" from="character" to="GlobalVars" method="_on_character_die"]
+[connection signal="die" from="character" to="Panel" method="_on_character_die"]
 [connection signal="body_entered" from="water/water_splash_hitbox" to="water" method="_on_water_splash_hitbox_body_entered"]
 [connection signal="play_again" from="Panel" to="shark" method="_on_Panel_play_again"]
 [connection signal="play_again" from="Panel" to="character" method="_on_Panel_play_again"]

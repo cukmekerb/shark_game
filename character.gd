@@ -5,7 +5,7 @@ var jump_speed = -1800
 var gravity = 50
 var been_on_floor = 0
 var floor_treshold = 2
-var can_jump = 0
+var can_jump = 1.5
 onready var start_pos = position
 var dead = false
 signal die

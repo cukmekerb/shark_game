@@ -39,8 +39,8 @@ radius = 47.5938
 height = 241.019
 
 [sub_resource type="CapsuleShape2D" id=4]
-radius = 73.021
-height = 241.019
+radius = 50.936
+height = 247.22
 
 [node name="character" type="KinematicBody2D"]
 script = ExtResource( 4 )
@@ -57,7 +57,7 @@ frames = SubResource( 2 )
 animation = "swimming"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2( -6.35678, 31.7839 )
+position = Vector2( -9.18521, 31.7839 )
 shape = SubResource( 3 )
 
 [node name="Camera" type="Camera2D" parent="."]
@@ -75,6 +75,6 @@ drag_margin_bottom = 0.54
 [node name="Area2D" type="Area2D" parent="."]
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="Area2D"]
-position = Vector2( -6.35678, 31.7839 )
+position = Vector2( -9.93597, 26.5458 )
 shape = SubResource( 4 )
 [connection signal="body_entered" from="Area2D" to="." method="_on_Area2D_body_entered"]

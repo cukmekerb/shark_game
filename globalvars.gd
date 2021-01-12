@@ -36,3 +36,12 @@ func load_data(file):
 
 	# Return data
 	return data
+
+
+func quit_game():
+	save_data({"hiscore": hiscore},"gamesave")
+	get_tree().quit()
+func _ready():
+	var data = load_data("gamesave")
+	if data != null:
+		hiscore = data.hiscore

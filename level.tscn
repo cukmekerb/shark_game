@@ -207,6 +207,17 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="Button2" type="Button" parent="Panel"]
+margin_left = 3841.69
+margin_top = 1633.9
+margin_right = 6141.69
+margin_bottom = 2142.9
+custom_fonts/font = ExtResource( 8 )
+text = "QUIT"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Panel"]
 anims/fadein = SubResource( 3 )
 anims/fadeout = SubResource( 4 )
@@ -239,9 +250,11 @@ __meta__ = {
 
 [node name="GlobalVars" type="Node2D" parent="."]
 script = ExtResource( 12 )
-[connection signal="die" from="character" to="shark" method="_on_character_die"]
 [connection signal="die" from="character" to="Panel" method="_on_character_die"]
+[connection signal="die" from="character" to="GlobalVars" method="_on_character_die"]
+[connection signal="die" from="character" to="shark" method="_on_character_die"]
 [connection signal="body_entered" from="water/water_splash_hitbox" to="water" method="_on_water_splash_hitbox_body_entered"]
 [connection signal="play_again" from="Panel" to="shark" method="_on_Panel_play_again"]
 [connection signal="play_again" from="Panel" to="character" method="_on_Panel_play_again"]
 [connection signal="pressed" from="Panel/Button" to="Panel" method="_on_Button_pressed"]
+[connection signal="pressed" from="Panel/Button2" to="Panel" method="_on_Button2_pressed"]

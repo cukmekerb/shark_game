@@ -5,6 +5,7 @@ var gravity = 50
 var player
 onready var start_pos = position
 var dead = false
+var old_move_speed = move_speed
 # Declare member variables here. Examples:
 # var a = 2
 # var b = "text"
@@ -31,7 +32,9 @@ func _process(delta):
 		velocity.x = move_speed*(player.position.x - position.x) 
 		move_and_slide(velocity, Vector2(0,-1))
 		velocity.x = lerp(velocity.x, 0, 0.05)
+		move_speed += 0.0005
 	else:
+		move_speed = old_move_speed
 		velocity.y = 2*(start_pos.y - position.y) 
 		velocity.x = 2*(start_pos.x - position.x) 
 		move_and_slide(velocity,Vector2(0,-1))

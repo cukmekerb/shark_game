@@ -60,7 +60,7 @@ animation = "swimming"
 position = Vector2( -6.35678, 31.7839 )
 shape = SubResource( 3 )
 
-[node name="Camera2D" type="Camera2D" parent="."]
+[node name="Camera" type="Camera2D" parent="."]
 current = true
 zoom = Vector2( 3.5, 3.5 )
 limit_smoothed = true

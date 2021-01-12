@@ -23,14 +23,14 @@ tracks/0/keys = {
 
 [sub_resource type="SpriteFrames" id=2]
 animations = [ {
-"frames": [ ExtResource( 1 ) ],
-"loop": true,
-"name": "swimming",
-"speed": 5.0
-}, {
 "frames": [ ExtResource( 2 ) ],
 "loop": true,
 "name": "diving",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 1 ) ],
+"loop": true,
+"name": "swimming",
 "speed": 5.0
 } ]
 
@@ -67,9 +67,9 @@ limit_smoothed = true
 drag_margin_h_enabled = true
 drag_margin_v_enabled = true
 smoothing_enabled = true
-drag_margin_left = 0.65
+drag_margin_left = 0.34
 drag_margin_top = 0.34
-drag_margin_right = 0.65
+drag_margin_right = 0.34
 drag_margin_bottom = 0.54
 
 [node name="Area2D" type="Area2D" parent="."]

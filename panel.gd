@@ -4,6 +4,7 @@ extends Panel
 # Declare member variables here. Examples:
 # var a = 2
 # var b = "text"
+onready var GlobalVars = get_node("/root/Node2D/GlobalVars")
 var has_died = false
 signal play_again
 # Called when the node enters the scene tree for the first time.
@@ -28,7 +29,14 @@ func _on_Button_pressed():
 
 
 func _on_character_die():
+	var score = floor(GlobalVars.score)
+	var zerozz = ""
+	for i in range(4-String(score).length()):
+		zerozz += "0"
+	score = zerozz+str(score)
 	$AnimationPlayer.play("fadein")
 	$Button.text = "Play Again"
+	$Label.text = "Score: "+score
 	has_died = true
+	GlobalVars.score = 0
 	pass # Replace with function body.

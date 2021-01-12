@@ -9,6 +9,7 @@ var can_jump = 0
 onready var start_pos = position
 var dead = false
 signal die
+onready var GlobalVars = get_node("/root/Node2D/GlobalVars")
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	$animatedsprite.play("diving")
@@ -54,6 +55,7 @@ func _process(delta):
 			been_on_floor -= 1
 		move_and_slide(velocity, Vector2(0,-1))
 		velocity.x = lerp(velocity.x, 0, 0.05)
+		GlobalVars.score += 0.1
 	else:
 		velocity.y = 2*(start_pos.y - position.y) 
 		velocity.x = 2*(start_pos.x - position.x) 
@@ -68,9 +70,11 @@ func _on_Area2D_body_entered(body):
 	if body.name == "shark":
 		print("dying")
 		dead = true
+		GlobalVars.dead = dead
 		emit_signal("die")
 
 
 func _on_Panel_play_again():
 	dead = false
+	GlobalVars.dead = dead
 	pass # Replace with function body.
